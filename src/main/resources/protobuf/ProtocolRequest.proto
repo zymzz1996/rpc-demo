@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto"; // 引用外部的message，可以是本地的，也可以是此处比较特殊的 Any
+
+option java_package = "com.zym.protobuf"; // 生成类的包名，注意：会在指定路径下按照该包名的定义来生成文件夹
+option java_outer_classname="ProtoBufRequest"; // 生成类的类名，注意：下划线的命名会在编译的时候被自动改为驼峰命名
+
+message Request {
+  Code code = 1;
+  string message = 2;
+  google.protobuf.Any details = 3; // 使用 google 的 any 类型
+
+  enum Code {
+    SUCCESS = 0;
+    FAIL = 1;
+  }
+
+}
